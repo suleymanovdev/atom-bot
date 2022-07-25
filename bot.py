@@ -115,7 +115,7 @@ async def botvers(ctx):
 @bot.command()
 async def help(ctx):
     emb = f"""```Attention, this is a bot created for programmers and their communities. The bot is under beta-development. Therefore, it will not work for some time.\n\n
-\t;sds - About SuleymanovDev server.\n\n
+\t;sds - About Atom server.\n\n
 \t;changeprefix - You can change bot prefix on your server.\n\n
 \t;weather - Show weather information(owm). <;weather London>\n\n
 \t;timer - Bot starting timer for you. <;timer 30>\n\n
@@ -288,12 +288,12 @@ async def on_message(message):
                     pass
             except:
                 emb = discord.Embed(title=f'{message.author.display_name}!', description=f'''
-     👋 Hello friend, my name is **SuleymanovDev Bot™**!
+     👋 Hello friend, my name is **Atom Bot™**!
 
      😎 My prefixes are `;`.
      😲 Write the `;help` command to find out all my options!
      📃 Do you want to know a little about me? Write `;about`!
-     🤔 Need help with the bot, or found a bug/error? Come to our `SuleymanovDev Discord Server`!
+     🤔 Need help with the bot, or found a bug/error? Come to our `Atom Discord Server`!
 
      🍀 Good luck!
     ''')
