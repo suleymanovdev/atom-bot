@@ -45,18 +45,21 @@ def get_prefix(bot, message):
 cwd = Path(__file__).parents[0]
 cwd = str(cwd)
 time_now = datetime.now()
-print(f"Bot Path: {cwd} .")
-print(f"Start time: {time_now} .")
-print(f'Ping in {bot.latency} ms.')
-
-#Setup for bot run && bot prefix && owm settings
-secret_file = json.load(open(cwd + '/secrets.json'))
-bot.config_token = secret_file['token']
+SECRET_FILE = json.load(open(cwd + '/secrets.json'))
+bot.config_token = SECRET_FILE['token']
 bot.remove_command('help')
-owm_key = secret_file['owm_key']
+bot.remove_command('weather')
+bot.remove_command('timer')
+owm_key = SECRET_FILE['owm_key']
 owm = OWM(owm_key)
 mgr = owm.weather_manager()
-version = secret_file['version']
+vers_id = SECRET_FILE['id']
+version = SECRET_FILE['version']
+print(f"Bot Path: {cwd} .")
+print(f"Start time: {time_now} .")
+print(f"Ping in {bot.latency} ms.")
+print(f"Version ID: {vers_id} .")
+print(f"Version NAME: {version} .")
 
 #################### STATUS ######################################################################################################
 
