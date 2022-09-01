@@ -156,12 +156,14 @@ async def weather(ctx, *, arg): # Bot Weather Function
 
 @commands.has_permissions(manage_channels=True)
 @bot.command()
-async def changeprefix(ctx, prefix): # Change Bot Prefix Function
+async def changeprefix(guild, ctx, prefix): # Change Bot Prefix Function
     with open('prefixes.json', 'r') as f:
         prefixes = json.load(f)
     prefixes[str(ctx.guild.id)] = prefix
     with open('prefixes.json', 'w') as f:
         json.dump(prefixes, f, indent=4)
+    temp_guild_id = str(guild.id)
+    print("[CHANGE PREFIX] GUILD: {temp_guild_id} > PREFIX: {prefix}.")
 
 @bot.command(pass_context=True, aliases=['clean'])
 @commands.has_permissions(manage_channels=True)
