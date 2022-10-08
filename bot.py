@@ -20,7 +20,7 @@ from pyowm.utils import config
 from pyowm.utils import timestamps
 from colorama import Fore, Back, Style
 
-#################### STATUS ######################################################################################################
+#################### STATUS ###########################################################################################
 
 bot = commands.Bot(command_prefix=get_prefix, intents=discord.Intents.all(), case_insensitive=True)
 logging.basicConfig(
@@ -61,7 +61,7 @@ print(f"Ping in {bot.latency} ms.")
 print(f"Version ID: {vers_id} .")
 print(f"Version NAME: {version} .")
 
-#################### STATUS ######################################################################################################
+#################### STATUS ###########################################################################################
 
 @bot.event
 async def on_ready():
@@ -88,7 +88,7 @@ async def on_guild_remove(guild):
     with open('prefixes.json', 'w') as f:
         json.dump(prefixes, f, indent=4)
 
-#################### ERROR #######################################################################################################
+#################### ERROR ############################################################################################
 
 @bot.event
 async def on_command_error(ctx, error):
@@ -103,7 +103,7 @@ async def on_command_error(ctx, error):
     if isinstance(error, commands.BadArgument):
         await ctx.send(' :name_badge:  `|`  **Wrong argument.**')
 
-#################### COMMANDS ####################################################################################################
+#################### COMMANDS #########################################################################################
         
 art() # Logo And Start Flag
         
@@ -170,8 +170,8 @@ async def changeprefix(guild, ctx, prefix): # Change Bot Prefix Function
 async def clear(ctx, amount=500): # Chat Clear Function
     await ctx.channel.purge(limit=amount)
 
-#################### FORMS #######################################################################################################
-    
+#################### FORMS ############################################################################################
+
 #Developer Program
 @bot.command()
 async def iamdeveloper(ctx, *, arg):
@@ -218,7 +218,7 @@ async def idea(ctx, *, idea=None):
         embed2 = discord.Embed(title="Sucs!",description=f"Idea was **successfully** submitted to the channel <#808749943942283315>\n**Content:\n{idea}**",color=discord.Color.green())
         await ctx.send(embed=embed2)
 
-##################################################################################################################################
+#######################################################################################################################
         
 #About
 @bot.command()
