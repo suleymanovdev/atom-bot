@@ -1,0 +1,5 @@
+Project Name: atom-bot |
+_______________________|
+
+About Project:
+	This is python discord bot which based on discord.py API and OWM API (OpenWeatherMap API), also in this project we use logs and PyWebIO for Log view.
