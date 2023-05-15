@@ -23,7 +23,6 @@ from discord.ext.commands import has_permissions, MissingPermissions
 from pyowm import OWM
 from pyowm.utils import config
 from pyowm.utils import timestamps
-from colorama import Fore, Back, Style
 from bs4 import BeautifulSoup
 
 # +----------------------------------+ SETTINGS +--------------------------------------------------------------------------------------------------------------------------------------+
@@ -58,14 +57,13 @@ async def on_ready():
     synced = await bot.tree.sync()
     os.system("clear")
     stats = f"""
-        {Fore.CYAN}•————————————————————————————————•
-        {Fore.CYAN}Bot Name: {Fore.MAGENTA}{bot.user.name}
-        {Fore.CYAN}Bot Path: {Fore.MAGENTA}{cwd}
-        {Fore.CYAN}Ping (ms): {Fore.MAGENTA}{bot.latency}
-        {Fore.CYAN}Version ID: {Fore.MAGENTA}{vers_id}
-        {Fore.CYAN}Commands: {Fore.MAGENTA}{len(synced)}
-        {Fore.CYAN}•————————————————————————————————•
-        {Style.RESET_ALL}
+        •—————————————————————————————————————•
+           Bot Name: {bot.user.name}
+           Bot Path: {cwd}
+           Ping (ms): {bot.latency}
+           Version ID: {{vers_id}
+           Commands: {len(synced)}
+        •—————————————————————————————————————•
 	"""
     print(stats)
     await bot.change_presence(activity=discord.Game(name=f"{version} | /help | atomdg.com/bot"))
@@ -185,12 +183,12 @@ async def help(interaction: discord.Integration):
     embed = discord.Embed(title=f'Help Book')
     embed.add_field(name=f'/about', value='📓 Information')
     embed.add_field(name=f'/updates', value='📓 Information')
-    embed.add_field(name=f'/weather', value='📓 Information')
     embed.add_field(name=f'/botvers', value='📓 Information')
-    embed.add_field(name=f'/gpt', value='📓 Information')
-    embed.add_field(name=f'/formula1', value='📓 Information')
-    embed.add_field(name=f'/appledev', value='📓 Information')
-    embed.add_field(name=f'/github', value='📓 Information')
+    embed.add_field(name=f'/weather', value='✌️ For Users')
+    embed.add_field(name=f'/gpt', value='✌️ For Users')
+    embed.add_field(name=f'/formula1', value='✌️ For Users')
+    embed.add_field(name=f'/appledev', value='✌️ For Users')
+    embed.add_field(name=f'/github', value='✌️ For Users')
     embed.add_field(name=f'/bug (your error)', value='🛠️ Developers Support')
     embed.add_field(name=f'/idea (your idea)', value='🛠️ Developers Support')
     embed.add_field(name=f'/feedback (your feedback)', value='🛠️ Developers Support')
@@ -241,32 +239,6 @@ async def about(interaction: discord.Integration):
     emb.add_field(name='👑 CREATOR', value='sudev#5563')
     emb.add_field(name='🔗 GITHUB', value='https://bit.ly/atombotrepo')
     await interaction.response.send_message(embed=emb)
-
-@bot.event
-async def on_message(message):
-    await bot.process_commands(message)
-    splited = message.content.split(' ')
-    if message.author.bot is False:
-        if f'<@!1088031232182456360>' in splited[0]:
-            try:
-                if splited[1] is None:
-                    pass
-                else:
-                    pass
-            except:
-                emb = discord.Embed(title=f'{message.author.display_name}!', description=f'''
-     👋 Hello friend, my name is **Atom Bot™**!
-
-     😎 My creator build me for helping you.
-     
-     😎 My prefixes are `/`.
-     😲 Write the `/help` command to find out all my options!
-     📃 Do you want to know a little about me? Write `/about`!
-     🤔 Need help with the bot, or found a bug/error? Come to our `Atom Discord Server`!
-
-     👻 Good luck!
-    ''')
-                await message.reply(embed=emb)
 
 @bot.tree.command(name="updates", description='Get Bot Updates')
 async def updates(interaction: discord.Integration):
