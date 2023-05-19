@@ -97,6 +97,7 @@ async def formula1(interaction: discord.Interaction):
             text="Formula 1 News: https://www.formula1.com/en/latest/all.html",
             icon_url="https://avatars.githubusercontent.com/u/109563195?s=400&u=51dcd9720783d251feccdb16a451813b04e30597&v=4"
         )
+        embed.set_image(url='https://github.com/suleymanovdev/atom-bot/blob/main/img/formula1.png?raw=true')
         await interaction.followup.send(embed=embed)
     else:
         await interaction.followup.send('Sorry, there was an error retrieving the latest Formula 1 news. Please try again later.')
@@ -119,6 +120,7 @@ async def github(interaction: discord.Interaction):
 			text="GitHub News: https://github.com/about/press",
 			icon_url="https://avatars.githubusercontent.com/u/109563195?s=400&u=51dcd9720783d251feccdb16a451813b04e30597&v=4"
 		)
+        embed.set_image(url='https://github.com/suleymanovdev/atom-bot/blob/main/img/github.png?raw=true')
         await interaction.followup.send(embed=embed)
     else:
         await interaction.followup.send('Sorry, there was an error retrieving the latest GitHub news. Please try again later.')
@@ -141,6 +143,7 @@ async def appledev(interaction: discord.Interaction):
 			text="Apple Developer News: https://developer.apple.com/news/",
 			icon_url="https://avatars.githubusercontent.com/u/109563195?s=400&u=51dcd9720783d251feccdb16a451813b04e30597&v=4"
 		)
+        embed.set_image(url='https://github.com/suleymanovdev/atom-bot/blob/main/img/appledev.png?raw=true')
         await interaction.followup.send(embed=embed)
     else:
         await interaction.followup.send('Sorry, there was an error retrieving the latest Apple Developer news. Please try again later.')
@@ -157,6 +160,7 @@ async def gpt(interaction: discord.Interaction, question: str):
         )
         ChatGPT_reply = response["choices"][0]["message"]["content"]
         embed = discord.Embed(title="GPT's Answer:", description=response["choices"][0]["text"], colour=discord.Colour.from_rgb(0, 61, 125))
+        embed.set_image(url='https://github.com/suleymanovdev/atom-bot/blob/main/img/gpt.png?raw=true')
         await interaction.response.send_message(embed=embed)
     except openai.error.RateLimitError as e:
         await interaction.response.send_message("Sorry, we have exceeded the API quota. Please try again later.")
@@ -170,14 +174,20 @@ async def weather(interaction: discord.Integration, city_name: str):
     embed.add_field(name='Show Status:', value=w.detailed_status)
     embed.add_field(name='Wind Degree:', value=w.wind()['deg'])
     embed.add_field(name='Wind Speed:', value=w.wind()['speed'])
-    embed.add_field(name='Teperature:', value=w.temperature('celsius'))
+    embed.add_field(name='Teperature:', value=w.temperature('celsius')['temp'])
+    embed.add_field(name='Max Teperature:', value=w.temperature('celsius')['temp_max'])
+    embed.add_field(name='Min Teperature:', value=w.temperature('celsius')['temp_min'])
+    embed.add_field(name='Feels Like:', value=w.temperature('celsius')['feels_like'])
     embed.add_field(name='Cloud Percent:', value=w.clouds)
     embed.add_field(name='Humidity:', value=w.humidity)
+    embed.set_image(url='https://github.com/suleymanovdev/atom-bot/blob/main/img/weather.png?raw=true')
     await interaction.response.send_message(embed=embed)
 
 @bot.tree.command(name="botvers", description='Get Bot Version')
 async def botvers(interaction: discord.Integration):
-    await interaction.response.send_message(f"`The bot version is {version}.`")
+    embed = discord.Embed(title=f'Bot Version: {version}', colour=discord.Colour.from_rgb(0, 61, 125))
+    embed.set_image(url='https://github.com/suleymanovdev/atom-bot/blob/main/img/botvers.png?raw=true')
+    await interaction.response.send_message(embed=embed)
 
 @bot.tree.command(name="help", description='Get Help Menu')
 async def help(interaction: discord.Integration):
@@ -193,7 +203,7 @@ async def help(interaction: discord.Integration):
     embed.add_field(name=f'/bug (your error)', value='🛠️ Developers Support')
     embed.add_field(name=f'/idea (your idea)', value='🛠️ Developers Support')
     embed.add_field(name=f'/feedback (your feedback)', value='🛠️ Developers Support')
-    embed.set_image(url='https://avatars.githubusercontent.com/u/109563195?s=400&u=51dcd9720783d251feccdb16a451813b04e30597&v=4')
+    embed.set_image(url='https://github.com/suleymanovdev/atom-bot/blob/main/img/about.png?raw=true')
     await interaction.response.send_message(embed=embed)
 
 @bot.tree.command(name="bug", description='Send Bot Bug to developers')
@@ -204,6 +214,7 @@ async def bug(interaction: discord.Integration, message: str):
         chan = bot.get_channel(1088082395988754484)
         emb = discord.Embed(title='Found a bug in the bot!', colour=discord.Colour.from_rgb(0, 61, 125))
         emb.add_field(name='Description:', value=message)
+        emb.set_image(url='https://github.com/suleymanovdev/atom-bot/blob/main/img/bug.png?raw=true')
         await chan.send(embed=emb)
 
 @bot.tree.command(name="feedback", description='Send Bot Feedback to developers')
@@ -214,6 +225,7 @@ async def feedback(interaction: discord.Integration, message: str):
         chan = bot.get_channel(1088082503589449758)
         embed = discord.Embed(title='Bot feedback!', colour=discord.Colour.from_rgb(0, 61, 125))
         embed.add_field(name='Description + rating:', value=message)
+        embed.set_image(url='https://github.com/suleymanovdev/atom-bot/blob/main/img/feedback.png?raw=true')
         await chan.send(embed=embed)
 
 @bot.tree.command(name="idea", description='Send Bot Idea to developers')
@@ -221,12 +233,15 @@ async def feedback(interaction: discord.Integration, message: str):
 async def idea(interaction: discord.Integration, message: str):
     if message is None:
         embed = discord.Embed(title="Err", description=f"Enter your idea `/idea <idea>`",color=discord.Color.red())
+        embed.set_image(url='https://github.com/suleymanovdev/atom-bot/blob/main/img/idea.png?raw=true')
         await interaction.response.send_message(embed=embed)
     else:
         channel = await bot.fetch_channel(1088082442398744666)
         embed = discord.Embed(title="New Idea!",description=f"**Content:**\n{message}", colour=discord.Colour.from_rgb(0, 61, 125))
+        embed.set_image(url='https://github.com/suleymanovdev/atom-bot/blob/main/img/idea.png?raw=true')
         msg = await channel.send(embed=embed)
         embed2 = discord.Embed(title="Sucs!",description=f"Idea was **successfully** submitted\n**Content:\n{message}**", colour=discord.Colour.from_rgb(0, 61, 125))
+        embed2.set_image(url='https://github.com/suleymanovdev/atom-bot/blob/main/img/idea.png?raw=true')
         await interaction.response.send_message(embed=embed2)
 
 @bot.tree.command(name="about", description='Get Bot Information')
@@ -240,12 +255,14 @@ async def about(interaction: discord.Integration):
     emb.add_field(name='✌ PARTICIPANS', value=f"{members}")
     emb.add_field(name='👑 CREATOR', value='sudev#5563')
     emb.add_field(name='🔗 GITHUB', value='https://bit.ly/atombotrepo')
+    emb.set_image(url='https://github.com/suleymanovdev/atom-bot/blob/main/img/about.png?raw=true')
     await interaction.response.send_message(embed=emb)
 
 @bot.tree.command(name="updates", description='Get Bot Updates')
 async def updates(interaction: discord.Integration):
     emb = discord.Embed(title='Bot updates.', description='Here my creator writes about my updates.', colour=discord.Colour.from_rgb(0, 61, 125))
     emb.add_field(name=f'{version}', value='https://atomdg.com/bot/updates')
+    emb.set_image(url='https://github.com/suleymanovdev/atom-bot/blob/main/img/updates.png?raw=true')
     await interaction.response.send_message(embed=emb)
 
 # +------------------------------------+ BOT.RUN +-------------------------------------------------------------------------------------------------------------------------------------+
