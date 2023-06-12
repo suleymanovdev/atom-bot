@@ -2,6 +2,14 @@
 
 This README.md file provides documentation for the Atom Bot project. It includes information about the modules used, settings, status events, command events, and available commands.
 
+## Table of Contents
+
+- [Modules](#modules)
+- [Settings](#settings)
+- [Status Events](#status-events)
+- [Commnand Events](#command-events)
+- [Commands](#commands)
+
 ## Modules
 
 The following modules are imported in the Atom Bot project:
